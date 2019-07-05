@@ -20,9 +20,10 @@ def list_clients():
     global clientes
     print(clientes)
 
-def update_client(client_name, update_client_name):
+def update_client(client_name):
     global clientes
     if client_name in clientes:
+        update_client_name = input('What is the update client name? ')
         clientes = clientes.replace(client_name + ',', update_client_name + ',')
     else:
         print('Client is not in clients list')
@@ -52,8 +53,8 @@ if __name__ == '__main__':
         pass
     elif command == 'U':
         client_name = get_client_name()
-        update_client_name = input('What is the update client name? ')
-        update_client(client_name, update_client_name)
+        update_client(client_name)
+        
         list_clients()
     else:
         print('El comando es invalido')
