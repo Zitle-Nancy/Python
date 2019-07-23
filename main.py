@@ -1,5 +1,5 @@
 
-clientes = 'pablo, ricardo,'
+clientes = 'pablo,ricardo,'
 
 def create_client(client_name):
     global clientes
@@ -7,7 +7,7 @@ def create_client(client_name):
         clientes += client_name
         _add_comma()
     else:
-        print('Client alredy is in the client\'s list')
+        print('Wii Client alredy is in the client\'s list')
 
 def _add_comma():
     global clientes
@@ -37,7 +37,18 @@ def delete_client(client_name):
         clientes = clientes.replace(client_name + ',', '')
     else:
         message_client_not_found()
-    
+
+
+def search_client(client_name):
+    global clientes
+
+    clients_list = clientes.split(',')
+
+    for client in clients_list:
+        if client != client_name:
+            continue
+        else:
+            return True
 
 
 def _print_welcome():
@@ -45,8 +56,10 @@ def _print_welcome():
     print('*' * 50)
     print('What would you like to do today? ')
     print('[C]reate client')
+    print('[L]ist client')
     print('[U]pdate client')
     print('[D]elete client')
+    print('[S]earch client')
 
 if __name__ == '__main__':
     list_clients()
@@ -67,6 +80,16 @@ if __name__ == '__main__':
         client_name = get_client_name()
         update_client(client_name)
         list_clients()
+    elif command == 'L' or command == 'l':
+        list_clients()
+    elif command == 'S' or command =='s':
+        client_name = get_client_name()
+        isExist = search_client(client_name)
+        
+        if isExist:
+            print('The client is in the client\'s list')
+        else:
+            print('The client: {} is not our client\'s list'.format(client_name))
     else:
         print('El comando es invalido')
     
